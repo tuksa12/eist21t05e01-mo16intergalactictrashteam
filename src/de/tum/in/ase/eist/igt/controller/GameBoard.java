@@ -20,7 +20,9 @@ public class GameBoard {
     private static final long RANDOM_SEED = 42;
     private static final int MAX_DEBRIS_MASS = 500;
     private static final int MAX_DEBRIS_SPEED = 2;
-
+    //starting position of the planets
+    private Planet planet1 = new Planet(442, 442, 42, 260,260,"planet.png");
+    private Planet planet2 = new Planet(100, 78, 9000,140,140,"planet-brown.png");
 
     public GameBoard(Dimension2D size) {
         this.size = size;
@@ -64,8 +66,8 @@ public class GameBoard {
      * */
     private void createGameObjects() {
         // planets
-        this.gameObjects.add(new Planet(442.0, 442.0, 42, 260,260,"planet.png"));
-        this.gameObjects.add(new Planet(100.0, 78.0, 9000,140,140,"planet-brown.png"));
+        this.gameObjects.add(planet1);
+        this.gameObjects.add(planet2);
 
         // spacecraft
         this.gameObjects.add(this.player.getSpaceCraft());
@@ -138,18 +140,28 @@ public class GameBoard {
      * TODO: implement collision detection
      * */
     public void moveGameObjects() {
-        // update the positions of the player car and the autonomous cars
+        // update the positions of the player spacecraft and the debris
         for (Debris debris : this.getDebris()) {
+            //calculate gravity for each debris
+            double[] gravityP1 = planet1.gravityAttraction(debris);
+            double[] gravityP2 = planet2.gravityAttraction(debris);
+            double accelerationGX = (gravityP1[0] + gravityP2[0]) / debris.getMass();
+            double accelerationGY = (gravityP1[1] + gravityP2[1]) / debris.getMass();
 
             // move debris
-            debris.move(size);
+            debris.move(size, accelerationGX, accelerationGY);
 
             // remove object if it went off board, meaning it crossed the canvas boundaries
             // TODO: debug out of bounds object removal
             if (!debris.isOnBoard()) this.gameObjects.remove(debris);
         }
+        //calculate gravity for the spacecraft
+        double[] gravityP1 = planet1.gravityAttraction(player.getSpaceCraft());
+        double[] gravityP2 = planet2.gravityAttraction(player.getSpaceCraft());
+        double accelerationGX = (gravityP1[0] + gravityP2[0]) / player.getSpaceCraft().getMass();
+        double accelerationGY = (gravityP1[1] + gravityP2[1]) / player.getSpaceCraft().getMass();
 
-        this.player.getSpaceCraft().move(size);
+        this.player.getSpaceCraft().move(size, accelerationGX, accelerationGY);
 
         // collision detection
 

@@ -36,7 +36,7 @@ public abstract class MovableObject extends GameObject {
      * Move the object in the game model according to the current orientation, speed and acceleration.
      * TODO: add arguments to model gravitational impacts on movement
      * */
-    public void move(Dimension2D gameBoardSize) {
+    public void move(Dimension2D gameBoardSize, double accelerationGX, double accelerationGY) {
 
         /*if (this.crunched) { // debries evaporated?
             return;

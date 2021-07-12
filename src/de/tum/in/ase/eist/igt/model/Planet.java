@@ -27,12 +27,16 @@ public class Planet extends StationaryObject {
      * Calculates gravitational force between this object and another MovableObject.
      *
      * @param movableObject Either a Debris object or the spacecraft, ignore laser projectiles.
-     * @return gravitational pull as double
+     * @return a double array containing the gravitational pull in the X and Y directions
      */
-    public double gravityAttraction(MovableObject movableObject) {
+    public double[] gravityAttraction(MovableObject movableObject) {
         double gravityValue = this.gravity * this.getMass() * movableObject.getMass();
         double distance = Math.hypot(this.getPosition().getX() - movableObject.getPosition().getX(), this.getPosition().getY() - movableObject.getPosition().getY());
-        return gravityValue/(distance * distance);
+        double forceG = gravityValue / (distance * distance);
+
+        double forceGX = (this.getPosition().getX() - movableObject.getPosition().getX()) * forceG / distance;
+        double forceGY = (this.getPosition().getY() - movableObject.getPosition().getY()) * forceG / distance;
+        return new double[] { forceGX, forceGY };
     }
 
 
