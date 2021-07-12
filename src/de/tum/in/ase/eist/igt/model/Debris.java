@@ -10,7 +10,7 @@ import java.util.ArrayList;
  * TODO: spawn derbies on a random edge position
  * TODO: different sizes
  * */
-public class Debris extends MovableObject{
+public class Debris extends MovableObject {
 
     private static final String DEBRIS_IMAGE_FILE = "debris_asteroid.png";
     private static final int DEBRIS_HEIGHT = 25;
@@ -39,26 +39,28 @@ public class Debris extends MovableObject{
     /**
      * When a debris is destroyed it splits in multiple smaller debris as long as it's mass is large enough.
      */
-    public ArrayList<Debris> split(){
-        Debris d1 = new Debris(getPosition().getX(), getPosition().getY(), getMass()/2, DEBRIS_WIDTH/2, DEBRIS_HEIGHT/2, getSpeed(), getDirection());
-        Debris d2 = new Debris(getPosition().getX(), getPosition().getY(), getMass()/2, DEBRIS_WIDTH/2, DEBRIS_HEIGHT/2, getSpeed(), getDirection());
-        ArrayList<Debris> ds = new ArrayList<>();
-        ds.add(d1);
-        ds.add(d2);
-        evaporate();
-        return ds;
+    public ArrayList<Debris> split() {
+        ArrayList<Debris> debrisList = new ArrayList<>();
+        int numberOfPieces = calculateNumberOfPieces();
+
+        for (int i = 0; i < numberOfPieces; i++){
+            Debris debris = new Debris(getPosition().getX(), getPosition().getY(), getMass()/numberOfPieces, DEBRIS_WIDTH/numberOfPieces, DEBRIS_HEIGHT/numberOfPieces, getSpeed(), getDirection());
+            debrisList.add(debris);
+        }
+
+        return debrisList;
     }
 
     /**
      * Determine into how many pieces a debris breaks appart.
      * */
-    private int calculateNumberOfPieces(){ return this.getMass() / MINIMAL_MASS; }
+    private int calculateNumberOfPieces() { return this.getMass() / MINIMAL_MASS; }
 
     /**
      * Destroys this debris when collided with a planet and tags it for removal from the game board.
      *
      * TODO: implement evaporation picture
      */
-    public void evaporate(){ this.tagOffBoard(); }
+    public void evaporate() { this.tagOffBoard(); }
 
 }

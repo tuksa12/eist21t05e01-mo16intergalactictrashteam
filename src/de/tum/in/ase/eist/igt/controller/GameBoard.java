@@ -137,7 +137,6 @@ public class GameBoard {
     /**
      * Move game objects and detect collisions.
      *
-     * TODO: implement collision detection
      * */
     public void moveGameObjects() {
         // update the positions of the player spacecraft and the debris
@@ -173,6 +172,7 @@ public class GameBoard {
 
             if (collision.isCollision()) {
                 gameOutcome = collision.evaluate();
+
                 /*Car loser = collision.evaluateLoser();
                 printWinner(winner);
                 loserCars.add(loser);
