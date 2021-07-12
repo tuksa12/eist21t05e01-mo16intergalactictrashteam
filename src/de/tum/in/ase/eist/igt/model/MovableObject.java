@@ -48,8 +48,8 @@ public abstract class MovableObject extends GameObject {
         // direction
         double deltaX = this.speed * Math.sin(Math.toRadians(this.direction));
         double deltaY = this.speed * Math.cos(Math.toRadians(this.direction));
-        double newX = this.position.getX() + deltaX;
-        double newY = this.position.getY() + deltaY;
+        double newX = this.position.getX() + deltaX + accelerationGX;
+        double newY = this.position.getY() + deltaY + accelerationGY;
 
         // calculate position in case the boarder of the game board has been reached bounce the spacecraft off the edge
         if (this.getClass() == SpaceCraft.class){
