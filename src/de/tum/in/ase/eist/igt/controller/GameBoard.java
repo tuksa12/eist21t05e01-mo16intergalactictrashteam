@@ -201,6 +201,8 @@ public class GameBoard {
             }
             // TODO: handle off board?
         }
+
+        if (gameObjects.size() < 4) gameOutcome = GameOutcome.WON;
     }
 
     /**
