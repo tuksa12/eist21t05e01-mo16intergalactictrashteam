@@ -199,8 +199,18 @@ public class GameBoard {
         }
 
         // TODO: movement for shots?
+
         for (Shot shots : this.getShots()) {
             shots.move(size, accelerationGX, accelerationGY);
+
+            for (int i = 0; i < getDebris().size(); i++) {
+                Collision collision = new Collision(getDebris().stream().toList().get(i), shots);
+                if (collision.isCollision()) {
+                    //gameOutcome = collision.evaluate();
+                    getDebris().stream().toList().get(i).evaporate();
+            }
+
+            }
         }
         // TODO: spacecraft debris
 
