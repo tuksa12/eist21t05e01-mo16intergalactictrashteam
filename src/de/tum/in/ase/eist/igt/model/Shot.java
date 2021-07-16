@@ -8,8 +8,8 @@ public class Shot extends MovableObject {
 
     private static final int SHOT_HEIGHT = 10;
     private static final int SHOT_WIDTH = 2;
-    private static final int INITIAL_SPEED = 50;
-    private static final int ACCELERATION = 1;
+    private static final int INITIAL_SPEED = 30;
+    private static final int ACCELERATION = 0;
 
     /**
      * These objects are added to the game board in {@link GameBoard#spacecraftShoot()}
