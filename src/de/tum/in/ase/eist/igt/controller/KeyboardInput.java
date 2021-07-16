@@ -22,7 +22,7 @@ public class KeyboardInput {
         this.spaceCraft = userSpaceCraft;
         this.gameBoardUI = gameBoardUI;
         this.scene = scene;
-        this.scene.addEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed);
+        // attachEventHandler();
     }
 
     /**
@@ -60,6 +60,14 @@ public class KeyboardInput {
 
     public void reset() { scene.addEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed);}
 
-    public void detachEventHandler() { scene.removeEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed); }
+    public void attachEventHandler() {
+        scene.addEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed);
+        System.out.println("event handler attached!");
+    }
+
+    public void detachEventHandler() {
+        scene.removeEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed);
+        System.out.println("detached event handler!");
+    }
 
 }

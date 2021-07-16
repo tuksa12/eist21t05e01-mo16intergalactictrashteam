@@ -72,25 +72,7 @@ public class GameBoardUI extends Canvas {
 		setupGameBoard();
 		setupImageCache();
 		this.gameToolBar.updateToolBarStatus(false);
-		//this.addEventHandler(KeyEvent.KEY_PRESSED, KeyboardInput::keyPressed);
 		paint();
-		// keyboardInput.reset();
-		
-		// d try to get keyboard input
-        //this.addEventHandler(KeyEvent.KEY_PRESSED, (key) -> {System.out.println(key.getCharacter()); });
-
-        /*this.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) { KeyboardInput.keyPressed(event); } });*/
-
-        /*
-        gameBoardUI.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                keyPressed(event);
-            }
-        });*/
-
     }
 
 	private void setupGameBoard() {
@@ -146,6 +128,7 @@ public class GameBoardUI extends Canvas {
 			startTimer();
 			paint();
 		}
+		keyboardInput.attachEventHandler();
 	}
 
 	private void startTimer() {
