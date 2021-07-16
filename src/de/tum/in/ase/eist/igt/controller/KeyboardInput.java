@@ -51,6 +51,7 @@ public class KeyboardInput {
             }
             case X -> {
                 gameBoardUI.getGameBoard().spacecraftShoot();
+                //System.out.println("X");
             }
         }
 
