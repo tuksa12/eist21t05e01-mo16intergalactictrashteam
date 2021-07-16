@@ -38,10 +38,6 @@ public abstract class MovableObject extends GameObject {
      * */
     public void move(Dimension2D gameBoardSize, double accelerationGX, double accelerationGY) {
 
-        /*if (this.crunched) { // debries evaporated?
-            return;
-        }*/
-
         double maxX = gameBoardSize.getWidth();
         double maxY = gameBoardSize.getHeight();
         // calculate delta between old coordinates and new ones based on speed and
@@ -52,7 +48,7 @@ public abstract class MovableObject extends GameObject {
         double newY = this.position.getY() + deltaY + accelerationGY;
 
         // calculate position in case the boarder of the game board has been reached bounce the spacecraft off the edge
-        /*if (this.getClass() == SpaceCraft.class){*/
+        if (this.getClass() != Shot.class){
             if (newX < 0) {
                 newX = -newX;
                 this.direction = MAX_ANGLE - this.direction;
@@ -74,11 +70,9 @@ public abstract class MovableObject extends GameObject {
                     this.direction = MAX_ANGLE + this.direction;
                 }
             }
-        /*} else if (this.position.getX() < 0 || this.position.getX() > maxX || this.position.getY() < 0 || this.position.getY() > maxY) {
 
-            // mark this object to be off board (this can happen only for debris and laser shots)
-            tagOffBoard();
-        }*/
+        }
+        else tagOffBoard();
 
         // set coordinates
         this.position = new Point2D(newX, newY);
