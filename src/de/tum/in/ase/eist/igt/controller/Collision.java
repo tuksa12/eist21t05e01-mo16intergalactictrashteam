@@ -1,9 +1,6 @@
 package de.tum.in.ase.eist.igt.controller;
 
-import de.tum.in.ase.eist.igt.model.Debris;
-import de.tum.in.ase.eist.igt.model.GameObject;
-import de.tum.in.ase.eist.igt.model.Planet;
-import de.tum.in.ase.eist.igt.model.SpaceCraft;
+import de.tum.in.ase.eist.igt.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -110,6 +107,12 @@ public class Collision {
             else if (gameObject2.getClass() == Planet.class){
                 Debris debris = (Debris) gameObject1;
                 debris.evaporate();
+            }
+
+            else if (gameObject2.getClass() == Shot.class){
+                objectsToRemove.add(gameObject1);
+                objectsToRemove.add(gameObject2);
+                objectsToAdd.addAll(((Debris) gameObject1).split());
             }
 
         }

@@ -3,6 +3,7 @@ package de.tum.in.ase.eist.igt.controller;
 import de.tum.in.ase.eist.igt.model.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GameBoard {
 
@@ -173,8 +174,6 @@ public class GameBoard {
         this.player.getSpaceCraft().move(size, accelerationGX, accelerationGY);
 
         // collision detection
-
-        // TODO: spacecraft planet
         for (GameObject gameObject : gameObjects){
             if (gameObject == getPlayerSpaceCraft()) continue;
 
@@ -212,9 +211,6 @@ public class GameBoard {
 
             }
         }
-        // TODO: spacecraft debris
-
-        // TODO: debris planet
 
         // iterate through all game objects and check for collisions
         for (Debris debris : this.getDebris()) {
@@ -226,7 +222,7 @@ public class GameBoard {
             // TODO: handle off board?
         }
 
-        if (gameObjects.size() < 4) gameOutcome = GameOutcome.WON;
+        if (gameObjects.stream().filter(gameObject -> {return gameObject.getClass() == Debris.class;}).collect(Collectors.toSet()).size() == 0) gameOutcome = GameOutcome.WON;
     }
 
     /**
