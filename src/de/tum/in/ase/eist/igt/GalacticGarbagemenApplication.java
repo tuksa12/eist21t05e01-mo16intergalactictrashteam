@@ -31,11 +31,12 @@ public class GalacticGarbagemenApplication extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		// the tool bar object with start and stop buttons
-		GameToolBar toolBar = new GameToolBar();
-		GameBoardUI gameBoardUI = new GameBoardUI(toolBar);
-		toolBar.initializeActions(gameBoardUI);
 
-		Pane gridLayout = createLayout(gameBoardUI, toolBar);
+        gameToolBar = new GameToolBar();
+		gameBoardUI = new GameBoardUI(gameToolBar);
+		gameToolBar.initializeActions(gameBoardUI);
+
+		Pane gridLayout = createLayout(gameBoardUI, gameToolBar);
 
 		// scene and stages
 		Scene scene = new Scene(gridLayout);

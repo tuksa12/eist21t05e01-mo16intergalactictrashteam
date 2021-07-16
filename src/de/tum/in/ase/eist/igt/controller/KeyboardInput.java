@@ -59,4 +59,6 @@ public class KeyboardInput {
 
     public void reset() { scene.addEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed);}
 
+    public void detachEventHandler() { scene.removeEventHandler(KeyEvent.KEY_PRESSED, this::keyPressed); }
+
 }

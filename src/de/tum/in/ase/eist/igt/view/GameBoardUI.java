@@ -4,6 +4,7 @@ import de.tum.in.ase.eist.igt.controller.*;
 import de.tum.in.ase.eist.igt.model.GameObject;
 import de.tum.in.ase.eist.igt.model.SpaceCraft;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
@@ -186,6 +187,7 @@ public class GameBoardUI extends Canvas {
 			this.gameToolBar.updateToolBarStatus(false);
 			this.gameTimer.cancel();
 		}
+		keyboardInput.detachEventHandler();
 	}
 
 	/**
