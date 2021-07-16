@@ -46,6 +46,7 @@ public class PlayerInput implements KeyListener {
 
             case KeyEvent.VK_RIGHT: gameObject.setPosition(gameObject.getPosition().getX() + speedX, gameObject.getPosition().getY());
             break;
+
         }
     }
 
