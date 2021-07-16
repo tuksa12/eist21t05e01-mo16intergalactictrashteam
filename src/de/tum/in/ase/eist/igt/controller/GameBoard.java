@@ -133,6 +133,16 @@ public class GameBoard {
         return debris;
     }
 
+    private Collection<Shot> getShots(){
+        HashSet<Shot> shots = new HashSet<>();
+
+        for (GameObject gameObject : this.gameObjects){
+            if (gameObject.getClass() == Shot.class) shots.add((Shot) gameObject);
+        }
+
+        return shots;
+    }
+
 
     /**
      * Move game objects and detect collisions.
@@ -188,6 +198,10 @@ public class GameBoard {
             }
         }
 
+        // TODO: movement for shots?
+        for (Shot shots : this.getShots()) {
+            shots.move(size, accelerationGX, accelerationGY);
+        }
         // TODO: spacecraft debris
 
         // TODO: debris planet
@@ -208,9 +222,7 @@ public class GameBoard {
     /**
      * Calls the shooting functionality on spacecraft and adds the resulting object to the game objects list.
      * */
-    public void spacecraftShoot() {
-        gameObjects.add(getPlayerSpaceCraft().shoot());
-    }
+    public void spacecraftShoot() { gameObjects.add(getPlayerSpaceCraft().shoot()); }
 
     public void spacecraftPowerUpAcceleration(PowerUp powerUp) { getPlayerSpaceCraft().setAcceleration(powerUp.enhance()); }
 }

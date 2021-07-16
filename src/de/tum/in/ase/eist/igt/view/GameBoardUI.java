@@ -203,6 +203,13 @@ public class GameBoardUI extends Canvas {
 					gameObject.getPosition().getY(), gameObject.getSize().getWidth(), gameObject.getSize().getHeight());
 		}
 
+		for (GameObject gameObject : this.gameBoard.getGameObjects()) {
+			String imageLocation = gameObject.getIconLocation();
+			this.imageCache.computeIfAbsent(imageLocation, this::getImage);
+		}
+		String playerImageLocation = this.gameBoard.getGameObjects().get(0).getIconLocation();
+		this.imageCache.put(playerImageLocation, getImage(playerImageLocation));
+
 	}
 
 
