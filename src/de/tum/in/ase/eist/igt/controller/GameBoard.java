@@ -21,8 +21,8 @@ public class GameBoard {
     private static final int MAX_DEBRIS_MASS = 500;
     private static final int MAX_DEBRIS_SPEED = 2;
     //starting position of the planets
-    private Planet planet1 = new Planet(442, 442, 42, 260,260,"planet.png");
-    private Planet planet2 = new Planet(100, 78, 9000,140,140,"planet-brown.png");
+    private Planet planet1 = new Planet(442, 442, 90000000, 260,260,"planet.png");
+    private Planet planet2 = new Planet(100, 78, 1000000,140,140,"planet-brown.png");
 
     public GameBoard(Dimension2D size) {
         this.size = size;
@@ -222,10 +222,7 @@ public class GameBoard {
     /**
      * Calls the shooting functionality on spacecraft and adds the resulting object to the game objects list.
      * */
-    public void spacecraftShoot() {
-        gameObjects.add(getPlayerSpaceCraft().shoot());
-
-    }
+    public void spacecraftShoot() { gameObjects.add(getPlayerSpaceCraft().shoot()); }
 
     public void spacecraftPowerUpAcceleration(PowerUp powerUp) { getPlayerSpaceCraft().setAcceleration(powerUp.enhance()); }
 }

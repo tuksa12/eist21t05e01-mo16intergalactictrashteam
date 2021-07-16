@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
@@ -70,6 +71,7 @@ public class GameBoardUI extends Canvas {
 		setupGameBoard();
 		setupImageCache();
 		this.gameToolBar.updateToolBarStatus(false);
+		//this.addEventHandler(KeyEvent.KEY_PRESSED, KeyboardInput::keyPressed);
 		paint();
 		// keyboardInput.reset();
 		
@@ -113,6 +115,9 @@ public class GameBoardUI extends Canvas {
 		String playerImageLocation = this.gameBoard.getGameObjects().get(0).getIconLocation();
 		this.imageCache.put(playerImageLocation, getImage(playerImageLocation));
 	}
+
+	public void addToImageCache(GameObject gameObject) {
+    }
 
 	/**
 	 * Sets the game object image.

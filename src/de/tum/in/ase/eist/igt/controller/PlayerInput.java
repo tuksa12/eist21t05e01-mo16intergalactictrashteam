@@ -1,8 +1,6 @@
 package de.tum.in.ase.eist.igt.controller;
 
 import de.tum.in.ase.eist.igt.model.GameObject;
-import de.tum.in.ase.eist.igt.model.Shot;
-import de.tum.in.ase.eist.igt.model.SpaceCraft;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -48,9 +46,6 @@ public class PlayerInput implements KeyListener {
 
             case KeyEvent.VK_RIGHT: gameObject.setPosition(gameObject.getPosition().getX() + speedX, gameObject.getPosition().getY());
             break;
-
-            case KeyEvent.VK_X: new Shot(gameObject.getPosition().getX(),gameObject.getPosition().getY(),1);
-                break;
         }
     }
 
